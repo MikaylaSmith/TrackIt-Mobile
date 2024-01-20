@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrackIt_Mobile.Views.JournalsDetailPage">
+	<RelativeLayout>
+		<!--The StackLayout should have 5% right margin, take up 90%, and a 5% left margin-->
+		<!--The parent in this case would be the phone resolution size for width and height-->
+		<StackLayout VerticalOptions="Start"
+                         HorizontalOptions="Fill"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.05}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.05}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.90}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                         BackgroundColor="Transparent">
+			<Label Text="Title:" FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="TitleContent" FontSize="Small"/>
+
+			<!--Find a way to make a horizontal line here-->
+			<BoxView HeightRequest="1" BackgroundColor="Black" />
+
+			<Label Text="Notes: " FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="NotesContent" FontSize="Small"/>
+		</StackLayout>
+	</RelativeLayout>
+</ContentPage>

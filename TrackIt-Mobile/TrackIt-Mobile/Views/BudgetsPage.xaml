@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrackIt_Mobile.Views.BudgetsPage">
+	<ContentPage.Content>
+		<!--Where the plant info goes on the page-->
+		<RelativeLayout>
+			<!--The StackLayout should have 5% right margin, take up 90%, and a 5% left margin-->
+			<!--The parent in this case would be the phone resolution size for width and height-->
+			<StackLayout VerticalOptions="Center"
+                         HorizontalOptions="Fill"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.05}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.90}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                         BackgroundColor="Transparent">
+				<SearchBar x:Name="BudgetSearchBar" 
+				Placeholder="Search Store Name"
+				TextChanged="BudgetSearchBarChanged"/>
+				
+				<CollectionView
+				x:Name="BudgetEntriesList"
+				SelectionMode="Single"
+				SelectionChanged="OnItemChanged">
+					<CollectionView.ItemsLayout>
+
+						<GridItemsLayout Orientation="Vertical"
+									 HorizontalItemSpacing="5"
+									 VerticalItemSpacing="20"
+									 Span="2">
+
+						</GridItemsLayout>
+					</CollectionView.ItemsLayout>
+					<CollectionView.ItemTemplate>
+						<DataTemplate>
+							<Frame BorderColor="#707070" CornerRadius="20" BackgroundColor="#707070"
+                                   Padding="5">
+								<Frame BorderColor="#707070" BackgroundColor="white" CornerRadius="15"
+                                       Padding="5">
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto"/>
+											<RowDefinition Height="Auto"/>
+										</Grid.RowDefinitions>
+
+										<Label
+											Grid.Row="0"
+											Text="{Binding StoreName}"
+											TextColor="Black"
+											FontAttributes="Bold"/>
+
+										<Label
+								           Grid.Row="1"
+                                           TextColor="#333333"
+								           FontAttributes="Italic">
+											<Label.FormattedText>
+												<FormattedString>
+													<Span Text="Total Spent: $"/>
+													<Span Text="{Binding AmountSpent}"/>
+												</FormattedString>
+											</Label.FormattedText>
+
+										</Label>
+
+										<Label
+								           Grid.Row="2"
+                                           TextColor="#333333"
+								           FontAttributes="Italic">
+											<Label.FormattedText>
+												<FormattedString>
+													<Span Text="Last Entry: "/>
+													<Span Text="{Binding Date, StringFormat='{0:MM/dd/yyyy'}"/>
+												</FormattedString>
+											</Label.FormattedText>
+										</Label>
+									</Grid>
+								</Frame>
+							</Frame>
+						</DataTemplate>
+					</CollectionView.ItemTemplate>
+
+				</CollectionView>
+			</StackLayout>
+		</RelativeLayout>
+	</ContentPage.Content>
+</ContentPage>

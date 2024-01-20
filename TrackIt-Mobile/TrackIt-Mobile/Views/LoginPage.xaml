@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TrackIt_Mobile.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+			 BackgroundColor="white">
+	<ContentPage.Content>
+		<!--Where The login fields go on the layout-->
+
+		<RelativeLayout>
+			<!--The StackLayout should have 5% right margin, take up 90%, and a 5% left margin-->
+			<!--The parent in this case would be the phone resolution size for width and height-->
+			<StackLayout VerticalOptions="Center"
+                         HorizontalOptions="Fill"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.05}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.90}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                         BackgroundColor="Transparent">
+				<!--The logo will be In the center of the screen starting 10% down the screen-->
+				<Image Source="Images\TrackItLogo.png" 
+                       VerticalOptions="Start" 
+                       HorizontalOptions="Center"/>
+				<Entry
+				       x:Name="UserNameField"
+				    Placeholder="Username"	
+				    Keyboard="Default"
+				    IsPassword="False"
+				    IsTextPredictionEnabled="False"
+				    ReturnType="Next"
+                    BackgroundColor="white"
+				/>
+				<Entry
+				    x:Name="PasswordField"
+				    Placeholder="Password"
+				    Keyboard="Default"
+				    ClearButtonVisibility="WhileEditing"
+				    IsTextPredictionEnabled="False"
+				    IsPassword="True"
+				    Completed="OnLogIn"
+				    ReturnType="Send"
+                    BackgroundColor="white"
+				/>
+				<Button VerticalOptions="Center" Text="Login" Clicked="OnLogIn"/>
+			</StackLayout>
+		</RelativeLayout>
+	</ContentPage.Content>
+</ContentPage>

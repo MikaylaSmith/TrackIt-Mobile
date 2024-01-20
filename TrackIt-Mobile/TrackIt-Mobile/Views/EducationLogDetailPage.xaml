@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrackIt_Mobile.Views.EducationLogDetailPage">
+	<RelativeLayout>
+		<!--The StackLayout should have 5% right margin, take up 90%, and a 5% left margin-->
+		<!--The parent in this case would be the phone resolution size for width and height-->
+		<StackLayout VerticalOptions="Start"
+                         HorizontalOptions="Fill"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.05}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.05}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.90}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                         BackgroundColor="Transparent">
+			<Label Text="Student Name:" FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="StudentName" FontSize="Small"/>
+			<Label Text="School Name:" FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="SchoolName" FontSize="Small"/>
+			<Label Text="Grade Level:" FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="GradeLevel" FontSize="Small"/>
+			
+			<!--Find a way to make a horizontal line here-->
+			<BoxView HeightRequest="1" BackgroundColor="Black" />
+
+			<Label Text="Date of Log:" FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="LogDate" FontSize="Small"/>
+			<Label Text="Session Time:" FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="SessionTime" FontSize="Small"/>
+			<Label Text="Notes:" FontSize="Medium" FontAttributes="Bold"/>
+			<Label x:Name="Notes" FontSize="Small"/>
+			
+			<Label Text="" Margin="0,10,0,0"/>
+			<Label Text="" Margin="0,10,0,0"/>
+			<Label Text="(Press the &lt; button to go back)" FontSize="Small"/>
+		</StackLayout>
+	</RelativeLayout>
+</ContentPage>
