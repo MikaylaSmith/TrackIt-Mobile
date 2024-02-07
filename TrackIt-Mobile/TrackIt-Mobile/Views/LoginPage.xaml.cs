@@ -26,10 +26,10 @@ namespace TrackIt_Mobile.Views
 		private async void OnLogIn(object sender, EventArgs e)
 		{
 			//Check username and password for SQL injections
-			//string Username = UserNameField.Text;
-			//string Password = PasswordField.Text;
-			string Username = "Admin";
-			string Password = "password";
+			string Username = UserNameField.Text;
+			string Password = PasswordField.Text;
+			//string Username = "Admin";
+			//string Password = "Password";
 
 			//Check if what was submitted is blank
 			if (Username == null || Password == null)
