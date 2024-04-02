@@ -1,4 +1,20 @@
-﻿using System;
+﻿/***********
+* Class: AppShell
+*
+* Purpose:
+*	The purpose of this class is to manage the app
+*
+* Manager Functions:
+*	AppShell()
+*		Initialize values and navigation routes
+*		
+*
+* Methods:
+*	OnLogOutClicked()
+*		Removes signed in user data and returns to LoginPage
+*
+***********/
+using System;
 using System.Collections.Generic;
 using TrackIt_Mobile.ViewModels;
 using TrackIt_Mobile.Views;
@@ -8,6 +24,10 @@ namespace TrackIt_Mobile
 {
 	public partial class AppShell : Xamarin.Forms.Shell
 	{
+		/* Purpose: Initialize routes and app
+		 * Input: None
+		 * Output: Routes initialized
+		 */
 		public AppShell()
 		{
 			InitializeComponent();

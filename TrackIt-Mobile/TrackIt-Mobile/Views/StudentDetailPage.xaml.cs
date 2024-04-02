@@ -1,4 +1,30 @@
-﻿using System;
+﻿/***********
+* Class: StudentDetailPage
+*
+* Purpose:
+*	The purpose of this class is to show information about students
+*
+* Manager Functions:
+*	StudentDetailPage()
+*		Initialize a StudentsDetailPage 
+*	StudentsDetailPage(Student)
+*		Initialize a StudentsDetailPage with a certain student to search for 
+*		
+*
+* Methods:
+*	OnAppearing()
+*		Initialize the list when the page appears to the user
+*	SetLogs(int)
+*	    Query the database and set up the list
+*	OnItemChanged()
+*	    Select item to display information for that selected item
+*	RadioButtonClicked()
+*	    Change what item is being searched on in the list
+*	LogSearchBarChanged(object, TextChangedEventArgs)
+*	    Refresh list for search results
+*
+***********/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,17 +45,29 @@ namespace TrackIt_Mobile.Views
 
 		private Student SelectedStudent { get; set; }
 
+		/* Purpose: Initialize the page
+		 * Input: None
+		 * Output: Page initialized
+		 */
 		public StudentDetailPage()
 		{
 			InitializeComponent();
 		}
 
+		/* Purpose: Initialize the page
+		 * Input: Student
+		 * Output: Page initialized
+		 */
 		public StudentDetailPage(Student student)
 		{
 			InitializeComponent();
 			SelectedStudent = student;
 		}
 
+		/* Purpose: Queries the database to display information
+		 * Input: None
+		 * Output: Data is listed to be formated to user
+		 */
 		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
@@ -56,6 +94,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Runs async method to add query results to list
+		 * Input: None
+		 * Output: List
+		 */
 		public async Task SetLogs(int studentID)
 		{
 			//Get the log information for the particular student
@@ -67,6 +109,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Actions for itms from list beng selected
+		 * Input: object, SelectionChangedEventArgs
+		 * Output: EducationLogDetailPage visible
+		 */
 		public async void OnItemChanged(object sender, SelectionChangedEventArgs e)
 		{
 			Education log = e.CurrentSelection.FirstOrDefault() as Education;
@@ -78,12 +124,20 @@ namespace TrackIt_Mobile.Views
 				
 		}
 
+		/* Purpose: Alter the filter option
+		 * Input: object, EventArgs
+		 * Output: Changed button
+		 */
 		private void RadioButtonClicked(object sender, EventArgs e)
 		{
 			RadioButton searchFilterButton = (RadioButton)sender;
 			searchFilter = searchFilterButton.Content.ToString();
 		}
 
+		/* Purpose: Refresh the list based on what is typed in search bar
+		 * Input: object, TextChangedEventArgs
+		 * Output: Filtered List
+		 */
 		private void LogSearchBarChanged(object sender, TextChangedEventArgs e)
 		{
 			string textValues = e.NewTextValue.ToLower();

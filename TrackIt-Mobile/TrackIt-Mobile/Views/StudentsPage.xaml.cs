@@ -1,4 +1,28 @@
-﻿using System;
+﻿/***********
+* Class: StudentsPage
+*
+* Purpose:
+*	The purpose of this class is to display the list of students to the user
+*
+* Manager Functions:
+*	StudentsPage()
+*		Create an instance of the StudentsPage
+*		
+*
+* Methods:
+*	OnAppearing()
+*		Initialize the list when the page appears to the user
+*	SetStudents()
+*	    Query the database and set up the list
+*	OnItemChanged()
+*	    Select item to display information for that selected item
+*	RadioButtonClicked()
+*	    Change what item is being searched on in the list
+*	StudentSearchBarChanged(object, TextChangedEventArgs)
+*	    Refresh list for search results
+*
+***********/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +41,19 @@ namespace TrackIt_Mobile.Views
 		ObservableCollection<Student> studentsList;
 		private string searchFilter { get; set; }
 
-
+		/* Purpose: Initialize the page
+		 * Input: None
+		 * Output: Page initialized
+		 */
 		public StudentsPage()
 		{
 			InitializeComponent();
 		}
 
+		/* Purpose: Queries the database to display information
+		 * Input: None
+		 * Output: Data is listed to be formated to user
+		 */
 		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
@@ -49,6 +80,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Runs async method to add query results to list
+		 * Input: None
+		 * Output: List
+		 */
 		private async Task SetStudents()
 		{
 			List<Student> students = await App.Database.GetStudents();
@@ -59,6 +94,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Actions for itms from list beng selected
+		 * Input: object, SelectionChangedEventArgs
+		 * Output: StudentDetailPage visible
+		 */
 		public async void OnItemChanged(object sender, SelectionChangedEventArgs e)
 		{
 			Student student = e.CurrentSelection.FirstOrDefault() as Student;
@@ -69,13 +108,20 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
-
+		/* Purpose: Alter the filter option
+		 * Input: object, EventArgs
+		 * Output: Changed button
+		 */
 		private void RadioButtonClicked (object sender, EventArgs e)
 		{
 			RadioButton searchFilterButton = (RadioButton)sender;
 			searchFilter = searchFilterButton.Content.ToString();
 		}
 
+		/* Purpose: Refresh the list based on what is typed in search bar
+		 * Input: object, TextChangedEventArgs
+		 * Output: Filtered List
+		 */
 		private void StudentSearchBarChanged(object sender, TextChangedEventArgs e)
 		{
 			string textValues = e.NewTextValue.ToLower();

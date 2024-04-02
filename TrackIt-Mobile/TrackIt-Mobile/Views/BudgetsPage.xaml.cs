@@ -1,4 +1,26 @@
-﻿using System;
+﻿/***********
+* Class: BudgetsPage
+*
+* Purpose:
+*	The purpose of this class is to display the list of budget entries to the user
+*
+* Manager Functions:
+*	BudgetsPage()
+*		Create an instance of the BudgetsPage
+*		
+*
+* Methods:
+*	OnAppearing()
+*		Initialize the list when the page appears to the user
+*	SetBudgetEntries()
+*	    Query the database and set up the list
+*	OnItemChanged(object, SelectionChangedEventArgs)
+*	   Select item to display information for that selected item
+*	BudgetSearchBarChanged(object, TextChangedEventArgs)
+*	    Refresh list for search results
+*
+***********/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +39,19 @@ namespace TrackIt_Mobile.Views
 		ObservableCollection<Budget> budgetEntriesList;
 		private string searchFilter { get; set; }
 
+		/* Purpose: Initialize the page
+		 * Input: None
+		 * Output: Page initialized
+		 */
 		public BudgetsPage()
 		{
 			InitializeComponent();
 		}
 
+		/* Purpose: Queries the database to display information
+		 * Input: None
+		 * Output: Data is listed to be formated to user
+		 */
 		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
@@ -48,6 +78,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Runs async method to add query results to list
+		 * Input: None
+		 * Output: List
+		 */
 		private async Task SetBudgetEntries()
 		{
 			List<Budget> budgets = await App.Database.GetBudgetEntries();
@@ -58,6 +92,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Actions for itms from list beng selected
+		 * Input: object, SelectionChangedEventArgs
+		 * Output: BudgetDetailPage visible
+		 */
 		public async void OnItemChanged(object sender, SelectionChangedEventArgs e)
 		{
 			Budget budget = e.CurrentSelection.FirstOrDefault() as Budget;
@@ -69,6 +107,10 @@ namespace TrackIt_Mobile.Views
 				
 		}
 
+		/* Purpose: Refresh the list based on what is typed in search bar
+		 * Input: object, TextChangedEventArgs
+		 * Output: Filtered List
+		 */
 		private void BudgetSearchBarChanged(object sender, TextChangedEventArgs e)
 		{
 			string textValues = e.NewTextValue.ToLower();

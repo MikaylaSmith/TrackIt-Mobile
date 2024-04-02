@@ -1,4 +1,24 @@
-﻿using System;
+﻿/***********
+* Class: App
+*
+* Purpose:
+*	Manage the application as a whole
+*
+* Manager Functions:
+*	App
+*		Initialize the app
+*		
+*
+* Methods:
+*	OnStart()
+*		Set state for when fresh start
+*	OnSleep()
+*		Set state for when app goes to sleep
+*	OnResume()
+*		Set state for when app returns from sleep
+*
+***********/
+using System;
 using TrackIt_Mobile.Services;
 using TrackIt_Mobile.Views;
 using TrackIt_Mobile.Models;
@@ -14,6 +34,10 @@ namespace TrackIt_Mobile
 		public static Database Database { get; set; }
 		public static bool UserIsLoggedIn { get; set; }
 
+		/* Purpose: Set state for when fresh start
+		 * Input: App starts
+		 * Output: App is usable
+		 */
 		public App()
 		{
 			InitializeComponent();
@@ -26,6 +50,10 @@ namespace TrackIt_Mobile
 			Shell.Current.CurrentItem = new LoginPage();
 		}
 
+		/* Purpose: Set state for when app goes to sleep
+		 * Input: App starts up
+		 * Output: App is usable
+		 */
 		protected override async void OnStart()
 		{
 			if (UserIsLoggedIn)
@@ -67,6 +95,10 @@ namespace TrackIt_Mobile
 			}
 		}
 
+		/* Purpose: Set state for when app goes to sleep
+		 * Input: App is running
+		 * Output: App hides in background
+		 */
 		protected override async void OnSleep()
 		{
 			if (UserIsLoggedIn)
@@ -107,6 +139,10 @@ namespace TrackIt_Mobile
 			}
 		}
 
+		/* Purpose: Set state for when app returns from sleep
+		 * Input: Opening app from closed state
+		 * Output: App is usable
+		 */
 		protected override async void OnResume()
 		{
 			if (UserIsLoggedIn)

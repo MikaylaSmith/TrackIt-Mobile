@@ -1,4 +1,24 @@
-﻿using System;
+﻿/***********
+* Class: JournalsPage
+*
+* Purpose:
+*	The purpose of this class is to display the list of journal entries to the user
+*
+* Manager Functions:
+*	JournalsPage()
+*		Create an instance of the JournalsPage
+*
+* Methods:
+*	OnAppearing()
+*		Initialize the list when the page appears to the user
+*	SetEntries()
+*	    Query the database and set up the list
+*	OnItemChanged(object, SelectionChangedEventArgs)
+*	   Select item to display information for that selected item
+*	JournalSearchBarChanged(object, TextChangedEventArgs)
+*	    Refresh list for search results 
+*
+***********/using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +36,19 @@ namespace TrackIt_Mobile.Views
 	{
 		private ObservableCollection<Journal> journalEntries;
 
+		/* Purpose: Initialize the page
+		 * Input: None
+		 * Output: Page initialized
+		 */
 		public JournalsPage()
 		{
 			InitializeComponent();
 		}
 
+		/* Purpose: Queries the database to display information
+		 * Input: None
+		 * Output: Data is listed to be formated to user
+		 */
 		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
@@ -47,6 +75,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Runs async method to add query results to list
+		 * Input: None
+		 * Output: List
+		 */
 		public async Task SetEntries()
 		{
 			//Get the log information for the particular student
@@ -58,6 +90,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Actions for itms from list beng selected
+		 * Input: object, SelectionChangedEventArgs
+		 * Output: JournalsDetailPage visible
+		 */
 		public async void OnItemChanged(object sender, SelectionChangedEventArgs e)
 		{
 			Journal journal = e.CurrentSelection.FirstOrDefault() as Journal;
@@ -68,6 +104,10 @@ namespace TrackIt_Mobile.Views
 			}
 		}
 
+		/* Purpose: Refresh the list based on what is typed in search bar
+		 * Input: object, TextChangedEventArgs
+		 * Output: Filtered List
+		 */
 		private void JournalSearchBarChanged(object sender, TextChangedEventArgs e)
 		{
 			string textValues = e.NewTextValue.ToLower();

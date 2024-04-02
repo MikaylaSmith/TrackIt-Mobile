@@ -10,21 +10,22 @@
 *		
 *
 * Methods:
-*	Instance()
-*		Gets the Singleton instance of the Database object
-*	Connect(string)
-*	    Based on what string is entered, dev or prod database connection will be made. 
-*	    Establishes a connection to the database.
-*	IsConnected()
-*	    Determines if the database has been connected or not. 
-*	    Returns false if not connected and not valid database information
-*	    Returns true if connection established or already has been connected
-*	
+*	GetUser(string, string)
+*	    Queries the database to log a user in
+*	    
 *	GetStudents()
 *	    Queries the database for all of the students information assigned to the currently signed in user. 
 *	    Returns a list of all of the student objects based on what was pulled from the database. 
 *	GetEducationLogs(int)
 *	    Queries the database for the logs for a particular student 
+*	    
+*	GetJournalEntries()
+*	    Queries the database for the journal entries
+*	    
+*   GetBudgetEntries()
+*	    Queries the database for the budget entries
+*	GetBudgetEntriesByStore(string)
+*	    Queries the database for the entries for a particular store
 *
 ***********/
 
@@ -45,6 +46,10 @@ namespace TrackIt_Mobile.Models
         
         private static readonly string connectionString = $"Server={MySQLEnvironment.Hostname};Port={MySQLEnvironment.Port};Database={MySQLEnvironment.DBName};Uid={MySQLEnvironment.Username};Pwd={MySQLEnvironment.Password};";
 
+        /* Purpose: Query for a user's information
+		 * Input: string, string
+		 * Output: User infromation
+		 */
         public async Task GetUser(string username, string password)
 		{
             //If got to this function, then there is no chance of injection
@@ -156,6 +161,10 @@ namespace TrackIt_Mobile.Models
             }
 		}
 
+        /* Purpose: Query for education log information
+		 * Input: int
+		 * Output: List of education logs
+		 */
         public async Task<List<Education>> GetEducationLogs(int studentID)
 		{
             List<Education> AllLogs = new List<Education>();
@@ -206,6 +215,10 @@ namespace TrackIt_Mobile.Models
             return AllLogs;
         }
 
+        /* Purpose: Query for student information
+		 * Input: None
+		 * Output: List of student information
+		 */
         public async Task<List<Student>> GetStudents()
         {
             List<Student> AllStudents = new List<Student>();
@@ -249,6 +262,10 @@ namespace TrackIt_Mobile.Models
             return AllStudents;
         }
 
+        /* Purpose: Query for journal entries
+		 * Input: None
+		 * Output: List of journal entries
+		 */
         public async Task<List<Journal>> GetJournalEntries()
         {
             List<Journal> AllEntries = new List<Journal>();
@@ -288,6 +305,10 @@ namespace TrackIt_Mobile.Models
             return AllEntries;
         }
 
+        /* Purpose: Query for budget entries
+		 * Input: None
+		 * Output: List of budget entries
+		 */
         public async Task<List<Budget>> GetBudgetEntries()
         {
             List<Budget> AllBudgetEntries = new List<Budget>();
@@ -327,6 +348,10 @@ namespace TrackIt_Mobile.Models
             return AllBudgetEntries;
         }
 
+        /* Purpose: Query for budget entries by a particular store name
+		 * Input: string
+		 * Output: List of budget entries for a given store
+		 */
         public async Task<List<Budget>> GetBudgetEntriesForStore(string storeName)
         {
             List<Budget> AllBudgetEntries = new List<Budget>();

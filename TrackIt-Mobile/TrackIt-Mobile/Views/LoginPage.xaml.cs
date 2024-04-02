@@ -1,4 +1,20 @@
-﻿using System;
+﻿/***********
+* Class: LoginPage
+*
+* Purpose:
+*	The purpose of this class is to manage the ability to log in to the app. 
+*	
+* Manager Functions:
+*	LoginPage()
+*		Initializes the class
+*		
+*
+* Methods:
+*	OnLogIn()
+*		Runs security checks to log the user in
+*	
+***********/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
